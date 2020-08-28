@@ -96,7 +96,6 @@ export class DriverRoute extends BaseRoute {
         try {
             const deleveryId = req.params.id
             const data = await deliveryRequest.findOne({ _id: mongoose.Types.ObjectId(deleveryId) });
-            console.log('data: ', data);
             let count: number;
             if (!data.count) {
                 count = 0
@@ -104,8 +103,6 @@ export class DriverRoute extends BaseRoute {
             if (data.count === 0 || data.count > 0) {
                 count = data.count + 1
             }
-
-
             const resp = await deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(deleveryId) }, { $set: { status: 'rejected', count: count } })
             res.json({
                 status: 200,
