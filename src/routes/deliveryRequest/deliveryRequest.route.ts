@@ -66,7 +66,47 @@ export class DeliveryRequestRoute extends BaseRoute {
             req.body.status = 'pending'
             // let deliveryRequestModel = new deliveryRequest();
             const resp = await deliveryRequest.aggregate([
-                { $match: {} }
+                {
+                    '$lookup': {
+                        from: 'drivers',
+                        let: { driverId: '$driver', },
+                        pipeline: [
+                            {
+                                $addFields: {
+                                    _id: {
+                                        $convert: {
+                                            input: '$_id',
+                                            to: 'string',
+                                            onError: 0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                $match: {
+                                    $expr: {
+                                        $and: [
+                                            {
+                                                $eq: ['$_id', '$$driverId']
+                                            },
+                                        ],
+                                    }
+                                }
+                            }
+                        ],
+                        as: 'driver_details'
+                    }
+                },
+                {
+                    $project: {
+                        name: 1,
+                        description: 1,
+                        fromLocation: 1,
+                        toLocation: 1,
+                        driver: { $arrayElemAt: ['$driver_details.name', 0] },
+                        status: 1,
+                    }
+                }
             ])
             res.json({
                 status: 200,
