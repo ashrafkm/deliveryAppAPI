@@ -6,6 +6,7 @@ import { first, isEmpty } from 'lodash';
 import { Types } from 'mongoose';
 
 import { Drivers } from '../../schema/drivers'
+import { deliveryRequest } from '../../schema/deliveryRequest'
 
 
 
@@ -80,8 +81,8 @@ export class DriverRoute extends BaseRoute {
     }
     private async acceptDelevery(req: any, res: Response, next: NextFunction) {
         try {
-            const driverId = req.params.id
-            const resp = await Drivers.updateOne({ _id: mongoose.Types.ObjectId(driverId) }, { $set: { status: 'accepted' } })
+            const deleveryId = req.params.id
+            const resp = await deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(deleveryId) }, { $set: { status: 'accepted' } })
             res.json({
                 status: 200,
                 message: 'delevery accepted.',
@@ -93,8 +94,8 @@ export class DriverRoute extends BaseRoute {
     }
     private async rejectDelevery(req: any, res: Response, next: NextFunction) {
         try {
-            const driverId = req.params.id
-            const resp = await Drivers.updateOne({ _id: mongoose.Types.ObjectId(driverId) }, { $set: { status: 'rejected' } })
+            const deleveryId = req.params.id
+            const resp = await deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(deleveryId) }, { $set: { status: 'rejected' } })
             res.json({
                 status: 200,
                 message: 'delevery accepted.',
