@@ -43,6 +43,8 @@ export class DriverRoute extends BaseRoute {
         // add index page route
         this.router.get('/list', this.list);
         this.router.put('/update/:id', this.update);
+        this.router.put('/update/:id', this.acceptDelevery);
+        this.router.put('/update/:id', this.rejectDelevery);
     }
 
 
@@ -70,6 +72,32 @@ export class DriverRoute extends BaseRoute {
             res.json({
                 status: 200,
                 message: 'update successful!.',
+                data: resp
+            })
+        } catch (error) {
+            res.json(error)
+        }
+    }
+    private async acceptDelevery(req: any, res: Response, next: NextFunction) {
+        try {
+            const driverId = req.params.id
+            const resp = await Drivers.updateOne({ _id: mongoose.Types.ObjectId(driverId) }, { $set: { status: 'accepted' } })
+            res.json({
+                status: 200,
+                message: 'delevery accepted.',
+                data: resp
+            })
+        } catch (error) {
+            res.json(error)
+        }
+    }
+    private async rejectDelevery(req: any, res: Response, next: NextFunction) {
+        try {
+            const driverId = req.params.id
+            const resp = await Drivers.updateOne({ _id: mongoose.Types.ObjectId(driverId) }, { $set: { status: 'rejected' } })
+            res.json({
+                status: 200,
+                message: 'delevery accepted.',
                 data: resp
             })
         } catch (error) {
