@@ -3,37 +3,5 @@
   "host": "localhost",
   "apiURL": "http://localhost:7010",
   "databaseName": "acumenwaste",
-  "connectionString": "mongodb://127.0.0.1:27017/delivery_management_system",
-  "dev": {
-    "port": 7010,
-    "host": "159.65.148.36",
-    "apiURL": "http://159.65.148.36:7010",
-    "stitchApiUrl": "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/acumenwaste-sicpe/service/",
-    "databaseName": "acumenwaste",
-    "stitchAppId": "acumenwaste-sicpe",
-    "stitchApiKey": "BEHtOgyfXie5bhFdXcTaDKsPOfxqjuvLATm1afK7JKoKRAYEXqU6mR54iWTaxySN",
-    "connectionString": "mongodb+srv://admin:admin@crusttest-9aoct.mongodb.net/acumenwaste?retryWrites=true&w=majority",
-    "imageUploadPath": "/var/lib/jenkins/workspace/acumenwasteAPI/uploads/",
-    "enableBigChange": false,
-    "smtpServer": "smtp.office365.com",
-    "smtpPort": "587",
-    "smtpEmail": "it@acumenwaste.co.uk",
-    "smtpPassword": "e9MqPWhHdj5qvMxQtXGw"
-  },
-  "prod": {
-    "port": 7010,
-    "host": "209.97.180.254",
-    "apiURL": "https://api.acumen-portal.co.uk",
-    "stitchApiUrl": "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/acumenwaste-paopp/service/",
-    "databaseName": "acumenwaste",
-    "stitchAppId": "acumenwaste-paopp",
-    "stitchApiKey": "IE818kjEJCMsuqBnjBrnA6Tqk3wsYqbmCLoo3kbsYvSUfQjleCQkCmqHGXYMBtL9",
-    "connectionString": "mongodb+srv://admin:admin@crust1.o6usg.mongodb.net/acumenwaste?retryWrites=true&w=majority",
-    "imageUploadPath": "/usr/share/nginx/api/acumenwasteAPI/uploads/",
-    "enableBigChange": true,
-    "smtpServer": "smtp.office365.com",
-    "smtpPort": "587",
-    "smtpEmail": "it@acumenwaste.co.uk",
-    "smtpPassword": "e9MqPWhHdj5qvMxQtXGw"
-  }
+  "connectionString": "mongodb://127.0.0.1:27017/delivery_management_system"
 }
