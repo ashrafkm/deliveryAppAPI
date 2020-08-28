@@ -43,8 +43,8 @@ export class DriverRoute extends BaseRoute {
         // add index page route
         this.router.get('/list', this.list);
         this.router.put('/update/:id', this.update);
-        this.router.put('/update/:id', this.acceptDelevery);
-        this.router.put('/update/:id', this.rejectDelevery);
+        this.router.put('/accept/:id', this.acceptDelevery);
+        this.router.put('/reject/:id', this.rejectDelevery);
     }
 
 
