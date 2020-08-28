@@ -95,7 +95,18 @@ export class DriverRoute extends BaseRoute {
     private async rejectDelevery(req: any, res: Response, next: NextFunction) {
         try {
             const deleveryId = req.params.id
-            const resp = await deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(deleveryId) }, { $set: { status: 'rejected' } })
+            const data = await deliveryRequest.findOne({ _id: mongoose.Types.ObjectId(deleveryId) });
+            console.log('data: ', data);
+            let count: number;
+            if (!data.count) {
+                count = 0
+            }
+            if (data.count) {
+                count = data.count + 1
+            }
+
+
+            const resp = await deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(deleveryId) }, { $set: { status: 'rejected', count: count } })
             res.json({
                 status: 200,
                 message: 'delevery rejected.',
