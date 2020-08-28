@@ -98,7 +98,7 @@ export class DriverRoute extends BaseRoute {
             const resp = await deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(deleveryId) }, { $set: { status: 'rejected' } })
             res.json({
                 status: 200,
-                message: 'delevery accepted.',
+                message: 'delevery rejected.',
                 data: resp
             })
         } catch (error) {
