@@ -14,7 +14,7 @@ const startJobs = () => {
 };
 
 
-let checkPendingDeliveries = new CronJob('*/10 * * * * *', () => {
+let checkPendingDeliveries = new CronJob('*/20 * * * * *', () => {
     checkForPendingDeliveries()
 });
 
@@ -35,7 +35,11 @@ async function getAvailableDrivers(deleveries: Array<any>) {
 }
 
 async function setDriverForPendingDeleveries(pendingDeleveries: Array<any>, availableDrivers: Array<any>) {
+    let drivers = availableDrivers;
     for (const eachDelevery of pendingDeleveries) {
-        // deliveryRequest.updateOne({_id:mongoose.Types.ObjectId(eachDelevery._id)},{driver:'asd'})
+        if (drivers.length > 0) {
+            const driver = drivers.pop();
+            deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(eachDelevery._id) }, { $set: { driver: driver._id } })
+        }
     }
 }
