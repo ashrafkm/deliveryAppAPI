@@ -101,7 +101,7 @@ export class DriverRoute extends BaseRoute {
             if (!data.count) {
                 count = 0
             }
-            if (data.count) {
+            if (data.count === 0 || data.count > 0) {
                 count = data.count + 1
             }
 
