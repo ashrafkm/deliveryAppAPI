@@ -10,11 +10,11 @@ Task Given
 6. cronjob, check if driver rejected 3 times and set the status as rejected.
 
 Task Completed
-1. create and list delevery request api = completed
+1. create and list delevery request api = Completed
 2. driver list api = completed
-3. api to update drivers (set availability of drivers) = completed.
-4. api to reject and accept the delevery request = completed
-5. cronjob, check every 20 seconds for pending delevery requests and assign the available drivers = completed
-6. cronjob, check if driver rejected 3 times and set the status as rejected = partially done.(did not get enough time)
+3. api to update drivers (set availability of drivers) = Completed.
+4. api to reject and accept the delevery request = Completed
+5. cronjob, check every 20 seconds for pending delevery requests and assign the available drivers = Completed
+6. cronjob, check if driver rejected 3 times and set the status as rejected = Partially done.(did not get enough time)
 
 ```
