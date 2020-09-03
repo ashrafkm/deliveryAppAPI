@@ -13,13 +13,12 @@ const startJobs = () => {
     checkPendingDeliveries.start();
 };
 
-
 let checkPendingDeliveries = new CronJob('*/20 * * * * *', () => {
     checkForPendingDeliveries()
 });
 
 async function checkForPendingDeliveries() {
-    const pendingDeleveries = await deliveryRequest.find({ status: 'pending' })
+    const pendingDeleveries = await deliveryRequest.find({ status: { $in: ['pending', 'rejected'] } })
     const availableDrivers = await getAvailableDrivers(pendingDeleveries)
     setDriverForPendingDeleveries(pendingDeleveries, availableDrivers)
 }
@@ -37,17 +36,13 @@ async function getAvailableDrivers(deleveries: Array<any>) {
 async function setDriverForPendingDeleveries(pendingDeleveries: Array<any>, availableDrivers: Array<any>) {
     let drivers = availableDrivers;
     for (const eachDelevery of pendingDeleveries) {
-
         if (eachDelevery.count && eachDelevery.count > 2) {
             deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(eachDelevery._id) }, { $set: { status: 'rejected' } })
         } else {
             if (drivers.length > 0) {
                 const driver = drivers.pop();
-
                 deliveryRequest.updateOne({ _id: mongoose.Types.ObjectId(eachDelevery._id) }, { $set: { driver: driver._id } })
             }
         }
-
-
     }
 }

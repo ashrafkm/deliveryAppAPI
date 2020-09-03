@@ -39,7 +39,7 @@ export class DriverRoute extends BaseRoute {
 
     private init() {
         // log
-        logger.info('[DriverRoute] Creating jobs route.');
+        logger.info('[DriverRoute] Creating DriverRoute route.');
 
         // add index page route
         this.router.get('/list', this.list);

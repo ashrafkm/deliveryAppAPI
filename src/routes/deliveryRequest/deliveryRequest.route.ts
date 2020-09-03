@@ -39,7 +39,7 @@ export class DeliveryRequestRoute extends BaseRoute {
 
     private init() {
         // log
-        logger.info('[DeliveryRequestRoute] Creating jobs route.');
+        logger.info('[DeliveryRequestRoute] Creating DeliveryRequestRoute route.');
 
         // add index page route
         this.router.post('/create', this.saveDeliveryRequest);
